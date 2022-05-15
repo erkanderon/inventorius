@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Subnet Analyzer</title>
+    </head>
+    <body>
+        <h2>Subnet Analyze</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Start Analyze">
+        </form>
+    </body>
+</html>
