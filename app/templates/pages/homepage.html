@@ -1,1 +1,52 @@
-test
+{% extends "commons/base.html" %}
+
+{% block content %}
+	      <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+         <div class="container-fluid">
+            <div class="form-head d-flex mb-3 align-items-start">
+
+               <div class="me-auto d-none d-lg-block">
+                  <h2 class="text-primary font-w600 mb-0">Dashboard</h2>
+                  <p class="mb-0">Welcome to Inventorius Admin!</p>
+               </div>          
+
+               <div class="col-xl-6 col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Subnet Analyze</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="">
+                                	{% csrf_token %}
+                                	<!--{{ form.as_p }}-->
+                                	{% for field in form %}
+	                                	<div class="mb-3 row">
+	                                		{{ field.errors }}
+	                                        <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+	                                        <div class="col-sm-9">
+	                                            {{ field }}
+	                                        </div>
+	                                    </div>
+								    {% endfor %}
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Start Analyze</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+             </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+{% endblock %}
