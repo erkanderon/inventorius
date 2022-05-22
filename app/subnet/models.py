@@ -8,7 +8,7 @@ class Description(models.Model):
     description = models.TextField(blank=True)
 
     def __str__(self):
-        return self.regex_name
+        return self.description
 
 class Subnet(models.Model):
     subnet_ip = models.GenericIPAddressField()
