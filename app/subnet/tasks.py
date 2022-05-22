@@ -6,7 +6,7 @@ from celery.utils.log import get_task_logger
 from django.core.mail import send_mail, BadHeaderError
 from celery import current_task
 import time
-from homepage.models import NMAPTask
+from subnet.models import NMAPTask
 
 
 logger = get_task_logger(__name__)
