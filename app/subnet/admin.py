@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Subnet, Ip, NMAPTask
+from .models import Subnet, Ip, NMAPTask, Description
 
 
 class ContactFormAdmin(admin.ModelAdmin):
@@ -10,3 +10,4 @@ class ContactFormAdmin(admin.ModelAdmin):
 admin.site.register(Subnet)
 admin.site.register(Ip)
 admin.site.register(NMAPTask)
+admin.site.register(Description)

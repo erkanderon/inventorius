@@ -1,0 +1,12 @@
+- model: subnet.description
+  pk: 0
+  fields:
+    regex_name: default
+    regex: default
+    description: Default value for Inventorius app
+- model: subnet.description
+  pk: 1
+  fields:
+    regex_name: db_seperator
+    regex: ^dpdb.*p.*$
+    description: DB Machines seperated by hostname
