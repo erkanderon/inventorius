@@ -25,7 +25,7 @@ def nmap_analyze(self, subnet_ip, mask):
 
     logger.info("NMAP analyze is starting for cidr " + str(subnet_ip) + "/" + str(mask))  
     try:
-        scan_result = scanner.scan(hosts=cidr, arguments="-O")
+        scan_result = scanner.scan(hosts=cidr, arguments="-O -p-")
         migrate(scan_result, cidr, subnet_ip, mask)
         logger.info("NMAP analyze is finished for cidr " + str(subnet_ip) + "/" + str(mask))
         end = time.time()
@@ -39,17 +39,22 @@ def nmap_analyze(self, subnet_ip, mask):
 
 def migrate(data, cidr, subnet_ip, mask):
     for key, value in data["scan"].items():
-        ip = value["addresses"]["ipv4"]
-        subnet = Subnet.objects.filter(subnet_ip=subnet_ip, mask=mask, cidr=cidr).first()
-        dns = value["hostnames"][0]["name"] if len(value["hostnames"][0]["name"]) > 0 else False
-        description = None
+        try:
+            ip = value["addresses"]["ipv4"]
+            subnet = Subnet.objects.filter(subnet_ip=subnet_ip, mask=mask, cidr=cidr).first()
+            dns = value["hostnames"][0]["name"] if len(value["hostnames"][0]["name"]) > 0 else False
+            description = None
 
-        if dns:
-        	description = search_for_regex(dns, description)
+            if not dns:
+                dns = ""
+            description = search_for_regex(dns, description)
 
-        port = serialize_port(value["tcp"])
+            port = serialize_port(value["tcp"])
 
-        Ip.objects.update_or_create(ip=ip, subnet=subnet, dns=dns, description=description, port=port)
+            update_or_create_ip(ip, subnet, dns, description, port)
+        except Exception as e:
+            print("Bu value için hata alındı!!! {} - Hata: {}".format(value, e))
+            continue
 
 def search_for_regex(dns, description):
     descriptions = Description.objects.all()
@@ -64,3 +69,16 @@ def serialize_port(data):
     for port, val in data.items():
         _port=_port + str(port) + ";"
     return _port
+
+def update_or_create_ip(ip, subnet, dns, description, port):
+    try:
+        obj = Ip.objects.get(
+            ip=ip, # test with other fields if you want
+            subnet=subnet
+        )
+        obj.dns = dns
+        obj.description=description
+        obj.port = port
+        obj.save()
+    except Ip.DoesNotExist:
+        obj = Ip.objects.create(ip=ip, subnet=subnet, dns=dns, description=description, port=port)
