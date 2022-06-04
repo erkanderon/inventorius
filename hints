@@ -1,0 +1,5 @@
+DJANGO_SUPERUSER_USERNAME=admin2 DJANGO_SUPERUSER_PASSWORD=psw \
+    python manage.py createsuperuser --email=admin@admin.com --noinput
+
+
+    
