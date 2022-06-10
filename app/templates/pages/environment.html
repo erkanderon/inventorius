@@ -1,0 +1,106 @@
+{% extends "commons/base.html" %}
+
+{% block content %}
+	      <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+         <div class="container-fluid">
+            <div class="row page-titles">
+              <ol class="action-box">
+                <li class="action-item"><a href="javascript:void(0)"><button type="button" class="btn mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add</button></a></li>
+                <li class="action-item"><a href="javascript:void(0)"><button type="button" class="btn mb-2" data-bs-toggle="modal" data-bs-target="#removeModal">Remove</button></a></li>
+              </ol>
+            </div>
+            <div class="row">
+              
+            {% for env in environment %}                                         
+            <div class="col-xl-4 col-lg-6 col-xxl-4 col-sm-6">
+              {% if forloop.counter|divisibleby:2 %}
+              <div class="card text-white bg-warning text-black">
+              {% else %}
+              <div class="card text-white bg-info">
+              {% endif %}
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between text-white"><span class="mb-0">Environment :</span><strong>{{ env.name }}</strong></li>
+                  <li class="list-group-item d-flex justify-content-between text-white"><span class="mb-0">Total VM Counts :</span><strong>{{ env.count }} </strong></li>
+                  <li class="list-group-item d-flex justify-content-center text-white"><span class="mb-0"></span><strong>Edit</strong></li>
+                </ul>
+              </div>
+            </div>
+            {% endfor %}
+
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        <div class="modal fade" id="addModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Add New Environment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="">
+                                  {% csrf_token %}
+                                  <!--{{ form.as_p }}-->
+                                  {% for field in form %}
+                                    <div class="mb-3 row">
+                                      {{ field.errors }}
+                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          <div class="col-sm-9">
+                                              {{ field }}
+                                          </div>
+                                      </div>
+                                  {% endfor %}
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="removeModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Remove Environment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="/environment/delete">
+                                  {% csrf_token %}
+                                  <!--{{ form.as_p }}-->
+                                  {% for field in remove_form %}
+                                    <div class="mb-3 row">
+                                      {{ field.errors }}
+                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          <div class="col-sm-9">
+                                              {{ field }}
+                                          </div>
+                                      </div>
+                                  {% endfor %}
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+{% endblock %}

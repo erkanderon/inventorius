@@ -8,47 +8,11 @@
         <div class="content-body">
             <!-- row -->
          <div class="container-fluid">
-            <!--**********************************
-                FORM start
-            ***********************************-->
-            <div class="form-head d-flex mb-3 align-items-start">
-               <div class="col-xl-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Subnet Analyze</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="basic-form">
-                                <form method="POST" action="">
-                                	{% csrf_token %}
-                                	<!--{{ form.as_p }}-->
-                                	{% for field in form %}
-	                                	<div class="mb-3 row">
-	                                		{{ field.errors }}
-	                                        <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
-	                                        <div class="col-sm-9">
-	                                            {{ field }}
-	                                        </div>
-	                                    </div>
-								    {% endfor %}
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-10">
-                                            {% if task_status == 'running' %}
-                                            <button type="submit" disabled="true" class="btn btn-primary">Start Analyze</button>
-                                            {% else %}
-                                            <button type="submit" class="btn btn-primary">Start Analyze</button>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-				</div>
-             </div>
-             <!--**********************************
-                FORM end
-            ***********************************-->
+            <div class="row page-titles">
+              <ol class="action-box">
+                <li class="action-item"><a href="javascript:void(0)"><button type="button" class="btn mb-2" data-bs-toggle="modal" data-bs-target="#analyzeModal">Analyze</button></a></li>
+              </ol>
+            </div>
              <div class="col-12">
                         <div class="card">
                             <div class="card-header">
@@ -102,4 +66,39 @@
         <!--**********************************
             Content body end
         ***********************************-->
+        <div class="modal fade" id="analyzeModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Subnet Analyze</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <!--{{ form.as_p }}-->
+                                {% for field in form %}
+                                    <div class="mb-3 row">
+                                        {{ field.errors }}
+                                        <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                        <div class="col-sm-9">
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    {% if task_status == 'running' %}
+                                    <button type="submit" disabled="true" class="btn btn-primary">Start Analyze</button>
+                                    {% else %}
+                                    <button type="submit" class="btn btn-primary">Start Analyze</button>
+                                    {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
 {% endblock %}

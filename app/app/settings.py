@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'common',
     'homepage',
-    'subnet'
+    'subnet',
+    'environment',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +140,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 APPEND_SLASH = False
 
 STATIC_URL = "/static/"
+
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 
 #CSRF_TRUSTED_ORIGINS = ["https://engincetinkaya.com", "https://www.drengincetinkaya.com"]
 

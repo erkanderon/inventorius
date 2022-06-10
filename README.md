@@ -3,10 +3,25 @@
 ### TODO LIST v2.0.0
 
 - [x] v1.0.0 review
-- [ ] commons seperation
+- [x] commons seperation
 - [ ] environments page organization
 - [ ] Regex form add or remove
 - [ ] Simple machine app status check with celery
+
+### TODO LIST v3.0.0
+
+- [x] v2.0.0 review
+- [ ] monitoring spesific host and port
+- [ ] alarm graphical representation
+- [ ] alarm when you took thresholded failure
+
+### TODO LIST v4.0.0
+
+- [x] v3.0.0 review
+- [ ] kafka monitoring
+- [ ] couchbase monitoring
+- [ ] vm connector for general monitoring
+
 
 ### BUGFIX v1.0.0
 

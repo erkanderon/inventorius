@@ -1,11 +1,11 @@
-- model: subnet.description
-  pk: 0
+- model: common.description
+  pk: 50
   fields:
     regex_name: default
     regex: default
     description: Default value for Inventorius app
-- model: subnet.description
-  pk: 1
+- model: common.description
+  pk: 51
   fields:
     regex_name: db_seperator
     regex: ^dpdb.*p.*$
