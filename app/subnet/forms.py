@@ -4,7 +4,7 @@ from .models import Subnet
 
 
 class SubnetForm(forms.ModelForm):
-    subnet_ip= forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+    subnet_ip= forms.GenericIPAddressField(widget=forms.TextInput(attrs={'class':'form-control'}))
     mask= forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
 
     class Meta:

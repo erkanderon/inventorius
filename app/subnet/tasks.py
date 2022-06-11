@@ -8,6 +8,7 @@ from django.core.mail import send_mail, BadHeaderError
 from celery import current_task
 import time
 from subnet.models import NMAPTask, Subnet, Ip, Description
+from common.runner import sync_environment_count
 
 
 logger = get_task_logger(__name__)
@@ -33,6 +34,7 @@ def nmap_analyze(self, subnet_ip, mask):
     except Exception as e:
         logger.info("NMAP analyze is failed for cidr " + str(subnet_ip) + "/" + str(mask))
         logger.info(e)
+        raise e
         NMAPTask.objects.filter(task_id=self.request.id).update(flag="2", took_time_in_minute=(time.time() - self.start)/60)
 
     return
@@ -42,31 +44,27 @@ def migrate(data, cidr, subnet_ip, mask):
         try:
             ip = value["addresses"]["ipv4"]
             subnet = Subnet.objects.filter(subnet_ip=subnet_ip, mask=mask, cidr=cidr).first()
-            dns = value["hostnames"][0]["name"] if len(value["hostnames"][0]["name"]) > 0 else False
+            dns = value["hostnames"][0]["name"] if len(value["hostnames"][0]["name"]) > 0 else ""
             description = None
 
-            if not dns:
-                dns = ""
-            description = search_for_regex(dns, description)
+            print("ip: {} - subnet: {} - dns: {} - desc: {}".format(ip, subnet, dns, description))
 
-            port = serialize_port(value["tcp"])
+            port = serialize_port(value)
 
             update_or_create_ip(ip, subnet, dns, description, port)
+            sync_environment_count()
         except Exception as e:
+            raise e
             print("Bu value için hata alındı!!! {} - Hata: {}".format(value, e))
             continue
 
-def search_for_regex(dns, description):
-    descriptions = Description.objects.all()
-    for i in descriptions.iterator():
-        if re.search(i.regex, dns):
-            description = i
-            return description
-    return description
-
 def serialize_port(data):
     _port = ""
-    for port, val in data.items():
+
+    if not "tcp" in data:
+        return _port
+
+    for port, val in data["tcp"].items():
         _port=_port + str(port) + ";"
     return _port
 
@@ -77,8 +75,17 @@ def update_or_create_ip(ip, subnet, dns, description, port):
             subnet=subnet
         )
         obj.dns = dns
-        obj.description=description
         obj.port = port
+        obj = search_for_regex(obj, dns, description)
         obj.save()
     except Ip.DoesNotExist:
-        obj = Ip.objects.create(ip=ip, subnet=subnet, dns=dns, description=description, port=port)
+        obj = Ip.objects.create(ip=ip, subnet=subnet, dns=dns, port=port)
+        obj = search_for_regex(obj, dns, description)
+        obj.save()
+
+def search_for_regex(obj, dns, description):
+    descriptions = Description.objects.all()
+    for i in descriptions.iterator():
+        if re.search(i.regex, dns):
+            obj.description.add(i)
+    return obj
