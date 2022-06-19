@@ -16,7 +16,9 @@
             <div class="row">
               
             {% for env in environment %}                                         
-            <div class="col-xl-4 col-lg-6 col-xxl-4 col-sm-6">
+            <div id="item_{{env.id}}" onclick="openEditBox('{{env.id|escapejs}}')" class="col-xl-4 col-lg-6 col-xxl-4 col-sm-6">
+              <input type="hidden" name="name" value="{{env.name}}">
+              <input type="hidden" name="regex" value="{{env.regex.id}}">
               {% if forloop.counter|divisibleby:2 %}
               <div class="card text-white bg-warning text-black">
               {% else %}
@@ -25,12 +27,12 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between text-white"><span class="mb-0">Environment :</span><strong>{{ env.name }}</strong></li>
                   <li class="list-group-item d-flex justify-content-between text-white"><span class="mb-0">Total VM Counts :</span><strong>{{ env.count }} </strong></li>
-                  <li class="list-group-item d-flex justify-content-center text-white"><span class="mb-0"></span><strong>Edit</strong></li>
+                  <a href="/environment/{{env.id}}/detail"><li class="list-group-item d-flex justify-content-center text-white"><span class="mb-0"></span><strong>Show Details</strong></li></a>
+                  <li data-bs-toggle="modal" data-bs-target="#editModal" class="list-group-item d-flex justify-content-center text-white"><span class="mb-0"></span><strong>Edit</strong></li>
                 </ul>
               </div>
             </div>
             {% endfor %}
-
             </div>
         </div>
         <!--**********************************
@@ -103,4 +105,47 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="editModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Environment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="/environment/update">
+                                  {% csrf_token %}
+                                  <!--{{ form.as_p }}-->
+                                  {% for field in update_form %}
+                                    <div class="mb-3 row">
+                                      {{ field.errors }}
+                                          {% if field.label != "Id" %}
+                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          {% endif %}
+                                          <div class="col-sm-9">
+                                              {{ field }}
+                                          </div>
+                                      </div>
+                                  {% endfor %}
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Apply</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+<script>
+function openEditBox(id){
+   $("#editModal form input[name='name']").val($("#item_"+id+" input[name='name']").val());
+   $("#editModal form select[name='regex']").val($("#item_"+id+" input[name='regex']").val());
+   $("#editModal form input[name='id']").val(id);
+};
+</script>
 {% endblock %}

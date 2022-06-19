@@ -1,0 +1,193 @@
+{% extends "commons/base.html" %}
+
+{% block content %}
+	      <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+         <div class="container-fluid">
+            <div class="col-xl-12 col-lg-12 col-sm-12 settings">
+                <div class="row">
+                  <a href="javascript:void(0)">
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3" data-bs-toggle="modal" data-bs-target="#configureModal">
+                      <div class="widget-stat card bg-warning overflow-hidden">
+                        <div class="card-header border-0 text-center ">
+                          <h3 class="card-title text-white">Regex</h3>
+                        </div>
+                        <div class="card-body">
+                          <div class="ico-sparkline">
+                            <div class="bgl-warning text-warning">
+                              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <div class="modal fade" id="configureModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="max-width: 700px;">
+                <div class="modal-content">
+                    <div class="configure-content">
+                        <div class="left-part">
+                            <div class="left-parent">
+                              <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">List</h4>
+                                </div>
+                                <div class="card-body" style="font-size: 10px;">
+                                  <div class="table-responsive" style="height: 20vw; text-align: center;">
+                                    <table id="description-list" class="display">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Regex</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for d in desc %}                                         
+                                            <tr>
+                                                <td>{{ d.regex_name }}</td>
+                                                <td>{{ d.regex }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Regex</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                  </div>
+                                </div>
+                                
+                            </div>
+                              <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Regex Test</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="basic-form">
+                                      <form>
+                                        <div id="success-alert" class="alert alert-success solid alert-dismissible fade" style="text-align: left; display: none;">
+                                          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                                          <strong>Success!</strong>
+                                          <button id="success-button" type="button" class="btn-close" aria-label="btn-close">
+                                            </button>
+                                        </div>
+                                        <div id="fail-alert" class="alert alert-danger solid alert-dismissible fade" style="text-align: left; display: none;">
+                                          <svg viewBox="0 0 24 24" width="24 " height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                                          <strong>Error!</strong>
+                                          <button id="fail-button" type="button" class="btn-close" aria-label="btn-close">
+                                                            </button>
+                                        </div>
+                                        {% csrf_token %}
+                                        {% for field in regex_form %}
+                                          <div class="mb-3 row">
+                                            
+                                                <label class="col-sm-4 col-form-label col-form-label-sm">{{ field.label_tag }}</label>
+                                                <div class="col-sm-8">
+                                                    {{ field }}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                      </form>
+                                        <div class="modal-footer">
+                                          <button id="check_regex" type="submit" class="btn btn-primary">Test</button>
+                                        </div>
+                                        <script>
+                                          $("#check_regex").click(function () {
+                                            var regex = $("#id_regex").val();
+                                            var word = $("#id_word").val()
+
+                                            $.ajax({
+                                              url: '/settings/check_regex',
+                                              data: {
+                                                'regex': regex,
+                                                'word': word
+                                              },
+                                              dataType: 'json',
+                                              success: function (data) {
+                                                if (data.result) {
+                                                   if(data.result=="true"){
+                                                      $("#success-alert").addClass("show");
+                                                      $("#success-alert").css("display", "block");
+                                                   }else{
+                                                      $("#fail-alert").addClass("show");
+                                                      $("#fail-alert").css("display", "block");
+                                                   }
+                                                }
+                                              }
+                                            });
+
+                                          });
+                                          $("#fail-button").click(function () {
+                                            $("#fail-alert").css("display", "none");
+
+                                          });
+                                          $("#success-button").click(function () {
+                                            $("#success-alert").css("display", "none");
+                                          });
+                                        </script>
+                                        
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="right-part">
+                            <div class="card">
+                              <div class="card-header">
+                                  <h4 class="card-title">Operation</h4>
+                              </div>
+                              <div class="card-body">
+                                  <div class="basic-form">
+                                      <ul class="nav nav-tabs" role="tablist" style="justify-content: center;">
+                                        <li class="nav-item">
+                                          <a class="nav-link active" data-bs-toggle="tab" href="#add" role="tab">
+                                            Add
+                                          </a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a class="nav-link" data-bs-toggle="tab" href="#remove" role="tab">
+                                            Remove
+                                          </a>
+                                        </li>
+                                      </ul>
+
+                                      <div class="card-body tab-content pt-3">
+                                        <div class="tab-pane fade active show" id="add">
+                                          <div class="height500 dz-scroll loadmore-content ps" id="sellingItems3Content">
+                                            Monthly
+                                          </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="remove">
+                                          <div class="height500 dz-scroll loadmore-content ps" id="sellingItems3Content">
+                                            Weekly
+                                          </div>
+                                        </div>
+                                      </div>
+
+
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+{% endblock %}

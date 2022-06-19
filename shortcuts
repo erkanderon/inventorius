@@ -1,21 +1,31 @@
-####start_app####
+#### start_app.sh ####
 
 #!/bin/bash
 nohup python3 inventorius/app/manage.py runserver 0.0.0.0:18001 > /Application/Inventorius/app.out &
-
-####start_celery####
+------------------------------------
+#### start_celery_worker.sh ####
 
 #!/bin/bash
 export PYTHONPATH="/Application/Inventorius/inventorius/app/:$PYTHONPATH"
 nohup celery -A app worker --loglevel=INFO > /Application/Inventorius/celery.out &
 
-####stop_celery####
+------------------------------------
+#### start_celery_beat.sh ####
+
+export PYTHONPATH="/Application/Inventorius/inventorius/app/:$PYTHONPATH"
+nohup celery -A app beat --loglevel=info > /Application/Inventorius/celery.out &
+------------------------------------
+#### stop_celery_worker.sh ####
 
 #!/bin/bash
-kill -9 $(ps -ef | grep -i celery | grep -v grep | awk '{print $2}')
+kill -9 $(ps -ef | grep -i celery | grep -i worker | grep -v grep | awk '{print $2}')
+------------------------------------
+#### stop_celery_beat.sh ####
 
-
-####stop_app####
+#!/bin/bash
+kill -9 $(ps -ef | grep -i celery | grep -i beat | grep -v grep | awk '{print $2}')
+------------------------------------
+#### stop_app ####
 
 #!/bin/bash
 kill -9 $(ps -ef | grep -i manage.py | grep -v grep | awk '{print $2}')

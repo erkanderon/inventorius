@@ -36,7 +36,6 @@ def nmap_analyze(self, subnet_ip, mask):
         logger.info(e)
         raise e
         NMAPTask.objects.filter(task_id=self.request.id).update(flag="2", took_time_in_minute=(time.time() - self.start)/60)
-
     return
 
 def migrate(data, cidr, subnet_ip, mask):

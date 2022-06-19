@@ -4,10 +4,10 @@
 
 - [x] v1.0.0 review
 - [x] commons seperation
-- [ ] environments page organization
+- [x] environments page organization
 - [x] environments page add and remove
-- [ ] environments page edit
-- [ ] environments page details
+- [x] environments page edit
+- [x] environments page details
 - [ ] Regex form add or remove
 - [ ] Simple machine app status check with celery
 

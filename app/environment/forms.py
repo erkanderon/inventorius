@@ -21,4 +21,13 @@ class RemoveEnvironmentForm(forms.ModelForm):
         model = Environment
         fields = ["name"]
 
+class UpdateEnvironmentForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    regex = forms.ModelChoiceField(required=True, queryset=Description.objects.all(), widget=forms.Select(attrs={'class': 'form-select me-sm-2 wide'}), empty_label="Nothing Selected")
+    id = forms.CharField(widget=forms.HiddenInput(attrs={'type':'hidden'}))
+    
+    class Meta:
+        model = Environment
+        fields = ["id", "name", "regex"]
+
     

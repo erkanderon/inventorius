@@ -53,3 +53,68 @@
 .mb-2{
     margin-bottom: 0 !important;
 }
+li[data-bs-toggle="modal"]{
+    cursor: pointer;
+}
+
+.settings .card-header{
+    justify-content: center;
+}
+.settings .ico-sparkline div{
+    margin: auto; height: 5.3125rem;
+    width: 5.3125rem;
+    border-radius: 3.125rem;
+    padding: 0.625rem 0.75rem;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #464a53;
+    min-width: 5.3125rem;
+}
+#configureModal .configure-content{
+    display: flex;
+    flex-direction: row;
+}
+#configureModal .configure-content .left-part{
+    width: 50%;
+    height: 80vh;
+    text-align: right;
+    color: white;
+}
+#configureModal .configure-content .right-part{
+    width: 50%;
+    height: 80vh;
+}
+#configureModal form{
+    margin-top: 10px;
+}
+#configureModal form label{
+    color: black;
+    text-align: left;
+    margin-top: 5px;
+}
+#configureModal .basic-form .modal-footer button{
+    width: 100%;
+}
+#configureModal .left-parent {
+    display: flex;
+    flex-direction: column;
+}
+#configureModal .modal-content, #configureModal .modal-dialog{
+    height:100%;
+    overflow-x: auto;
+}
+#configureModal table thead th{
+    font-size: 10px !important;
+    font-weight: 600;
+}
+
+#configureModal .dataTables_scrollHeadInner{
+    width: 100% !important;
+}
+#configureModal table[class="display dataTable"], #configureModal .dataTables_scrollFootInner{
+    width: 100% !important;
+}
+
+    

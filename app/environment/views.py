@@ -3,13 +3,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib import messages
 from django.views import View
-import re
 
-from .forms import EnvironmentForm, RemoveEnvironmentForm
+from .forms import EnvironmentForm, RemoveEnvironmentForm, UpdateEnvironmentForm
 from .models import Environment
 from common.models import Description
 from subnet.models import Ip
-from common.runner import sync_ip_description
+from common.runner import sync_ip_description, sync_environment_count
 
 class environment(View):
     template_name = "pages/environment.html"
@@ -18,9 +17,10 @@ class environment(View):
     def get(self, request):
         remove_form = RemoveEnvironmentForm()
         form = EnvironmentForm()
+        update_form = UpdateEnvironmentForm()
         environment = Environment.objects.all()
 
-        return render(request, self.template_name, {"form": form, "environment": environment, "remove_form": remove_form})
+        return render(request, self.template_name, {"form": form, "environment": environment, "remove_form": remove_form, "update_form": update_form})
 
     def post(self, request):
         form = EnvironmentForm(request.POST)
@@ -43,17 +43,7 @@ class environment(View):
         messages.error(request, "Environment created failed!")
         return HttpResponseRedirect(request.path)
 
-    def _sync_ip_description(self):
-        descriptions = Description.objects.all()
-        ip = Ip.objects.all()
-        for ip_obj in ip.iterator():
-            for desc in descriptions.iterator():
-                if re.search(desc.regex, ip_obj.dns):
-                    ip_obj.description.add(desc)
-            ip_obj.save()
-
-class delete_environment(View):
-    template_name = "pages/environment.html"
+class delete(View):
     success_url = "/environment"
 
     def post(self, request):
@@ -67,3 +57,39 @@ class delete_environment(View):
 
             messages.success(request, "Environment removed successfully!")
         return HttpResponseRedirect(self.success_url)
+
+class update(View):
+    success_url = "/environment"
+
+    def post(self, request):
+        form = UpdateEnvironmentForm(request.POST)
+
+        if form.is_valid():
+            clean_form = form.cleaned_data
+
+            environment = Environment.objects.get(id=clean_form["id"])
+            environment.name = clean_form["name"]
+            environment.regex = Description.objects.get(description=clean_form["regex"])
+            environment.save()
+
+            sync_environment_count()
+
+            messages.success(request, "Environment updated successfully!")
+        else:
+            print("form clean değil")
+        return HttpResponseRedirect(self.success_url)
+
+class detail(View):
+    template_name = "pages/environment/detail.html"
+    success_url = "/environment"
+
+    def get(self, request, *args, **kwargs):
+
+        id = self.kwargs["id"]
+
+        environment = Environment.objects.get(id=id)
+        ips = Ip.objects.filter(description=environment.regex).values("ip", "dns", "port").distinct()
+        ip_count = Ip.objects.filter(description=environment.regex).values("ip").distinct()
+        dns_count = Ip.objects.filter(description=environment.regex).values("dns").distinct()
+
+        return render(request, self.template_name, {'ips': ips, 'ip_count': ip_count, 'dns_count': dns_count, 'environment': environment})
