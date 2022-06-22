@@ -35,7 +35,7 @@
 
 
         <div class="modal fade" id="configureModal" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="max-width: 700px;">
+            <div class="modal-dialog" role="document" style="max-width: 1100px;">
                 <div class="modal-content">
                     <div class="configure-content">
                         <div class="left-part">
@@ -170,12 +170,61 @@
                                       <div class="card-body tab-content pt-3">
                                         <div class="tab-pane fade active show" id="add">
                                           <div class="height500 dz-scroll loadmore-content ps" id="sellingItems3Content">
-                                            Monthly
+                                            <div class="card">
+                                              <div class="card-body">
+
+                                                <div class="basic-form">
+                                                  <form method="POST" action="/settings/description/add">
+                                                    {% csrf_token %}
+                                                    {% for field in regex_add_form %}
+                                                      <div class="mb-3 row">
+                                                        
+                                                            <label class="col-sm-4 col-form-label col-form-label-sm">{{ field.label_tag }}</label>
+                                                            <div class="col-sm-8">
+                                                                {{ field }}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                    <div class="modal-footer">
+                                                      <button id="check_regex" type="submit" class="btn btn-primary">Add</button>
+                                                    </div>
+                                                  </form>
+                                                    
+                                                    
+                                                  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                           </div>
                                         </div>
                                         <div class="tab-pane fade" id="remove">
                                           <div class="height500 dz-scroll loadmore-content ps" id="sellingItems3Content">
-                                            Weekly
+                                            <div class="card">
+                                              <div class="card-body">
+
+                                                <div class="basic-form">
+                                                  <form method="POST" action="/settings/description/delete">
+                                                    {% csrf_token %}
+                                                    {% for field in regex_remove_form %}
+                                                      <div class="mb-3 row">
+                                                        
+                                                            <label class="col-sm-4 col-form-label col-form-label-sm">{{ field.label_tag }}</label>
+                                                            <div class="col-sm-8">
+                                                                {{ field }}
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                    <div class="modal-footer">
+                                                      <button id="check_regex" type="submit" class="btn btn-primary">Remove</button>
+                                                    </div>
+                                                  </form>
+                                                    
+                                                    
+                                                  
+                                                    </div>
+                                                </div>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>

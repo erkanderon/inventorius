@@ -43,7 +43,7 @@
                                             <tr>
                                                 <td>{{ ip.dns }}</td>
                                                 <td>{{ ip.ip }}</td>
-                                                <td>{{ ip.subnet }}</td>
+                                                <td>{% for sub in ip.subnet.all %}{{ sub }}<br/>{% endfor %}</td>
                                                 <td>{{ ip.port | c_replace }}</td>
                                             </tr>
                                             {% endfor %}

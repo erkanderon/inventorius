@@ -18,8 +18,8 @@ def subnet_page(request):
     if running_task:
         task_status = "running"
 
-    ip_count = Ip.objects.values("ip", "dns", "port").distinct()
-    dns_count = Ip.objects.values("ip", "dns", "port").distinct()
+    ip_count = Ip.objects.values("ip").distinct()
+    dns_count = Ip.objects.values("dns").distinct()
     subnet_count = Subnet.objects.values("cidr").distinct()
 
     if request.method == 'POST':

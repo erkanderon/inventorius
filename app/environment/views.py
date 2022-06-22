@@ -88,8 +88,8 @@ class detail(View):
         id = self.kwargs["id"]
 
         environment = Environment.objects.get(id=id)
-        ips = Ip.objects.filter(description=environment.regex).values("ip", "dns", "port").distinct()
-        ip_count = Ip.objects.filter(description=environment.regex).values("ip").distinct()
-        dns_count = Ip.objects.filter(description=environment.regex).values("dns").distinct()
+        ips = Ip.objects.filter(description=environment.regex)
+        ip_count = Ip.objects.filter(description=environment.regex)
+        dns_count = Ip.objects.filter(description=environment.regex)
 
         return render(request, self.template_name, {'ips': ips, 'ip_count': ip_count, 'dns_count': dns_count, 'environment': environment})

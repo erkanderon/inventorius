@@ -15,6 +15,6 @@ def sync_ip_description():
 def sync_environment_count():
     environments = Environment.objects.all()
     for env in environments.iterator():
-        ip_count = Ip.objects.filter(description=env.regex).values("ip", "dns", "port").distinct().count()
-        env.count = ip_count
+        ip_count = Ip.objects.filter(description=env.regex)
+        env.count = len(ip_count)
         env.save()

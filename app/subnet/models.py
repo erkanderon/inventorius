@@ -22,7 +22,7 @@ class Subnet(models.Model):
 class Ip(models.Model):
 
     ip = models.CharField(max_length=100)
-    subnet = models.ForeignKey(Subnet, null=True, blank=True, on_delete=models.CASCADE)
+    subnet = models.ManyToManyField(Subnet, null=True, blank=True)
     dns = models.CharField(max_length=100, null=True)
     description = models.ManyToManyField(Description, blank=True)
     port = models.CharField(max_length=500, null=True)

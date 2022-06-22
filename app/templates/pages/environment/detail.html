@@ -14,7 +14,7 @@
                       <h4 class="card-title">{{ environment.name }} - IP List</h4>
                   </div>
                   <div class="summary">
-                      <h6 class="card-title">Total Unique IP Count: {{ ip_count|length }}</h6>
+                      <h6 class="card-title">Total IP Count: {{ ip_count|length }}</h6>
                   </div>
                   <div class="summary">
                       <h6 class="card-title">Total DNS Count: {{ dns_count|length }}</h6>
@@ -27,6 +27,8 @@
                                       <th>DNS</th>
                                       <th>IP</th>
                                       <th>PORT</th>
+                                      <th>ANALYZED IN</th>
+                                      <th>DESCRIPTION</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -35,6 +37,8 @@
                                       <td>{{ ip.dns }}</td>
                                       <td>{{ ip.ip }}</td>
                                       <td>{{ ip.port | c_replace }}</td>
+                                      <td>{% for sub in ip.subnet.all %}{{ sub }}<br/>{% endfor %}</td>
+                                      <td>{% for desc in ip.description.all %}{{ desc }}<br/>{% endfor %}</td>
                                   </tr>
                                   {% endfor %}
                               </tbody>
@@ -43,6 +47,8 @@
                                       <th>DNS</th>
                                       <th>IP</th>
                                       <th>PORT</th>
+                                      <th>ANALYZED IN</th>
+                                      <th>DESCRIPTION</th>
                                   </tr>
                               </tfoot>
                           </table>

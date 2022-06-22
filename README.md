@@ -8,7 +8,8 @@
 - [x] environments page add and remove
 - [x] environments page edit
 - [x] environments page details
-- [ ] Regex form add or remove
+- [x] ip - subnet manytomany relationship
+- [x] Regex form add or remove
 - [ ] Simple machine app status check with celery
 
 ### TODO LIST v3.0.0

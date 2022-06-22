@@ -71,14 +71,15 @@ def update_or_create_ip(ip, subnet, dns, description, port):
     try:
         obj = Ip.objects.get(
             ip=ip, # test with other fields if you want
-            subnet=subnet
         )
+        obj.subnet.add(subnet)
         obj.dns = dns
         obj.port = port
         obj = search_for_regex(obj, dns, description)
         obj.save()
     except Ip.DoesNotExist:
-        obj = Ip.objects.create(ip=ip, subnet=subnet, dns=dns, port=port)
+        obj = Ip.objects.create(ip=ip, dns=dns, port=port)
+        obj.subnet.add(subnet)
         obj = search_for_regex(obj, dns, description)
         obj.save()
 
