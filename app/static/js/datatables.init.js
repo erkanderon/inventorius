@@ -82,6 +82,19 @@ let dataSet = [
         "paging":         false
     });
 
+    //example 2
+    var table2 = $('#description-list').DataTable( {
+        createdRow: function ( row, data, index ) {
+            $(row).addClass('selected')
+        },
+
+        "scrollY":        "42vw",
+        "scrollCollapse": true,
+        "paging":         false,
+        "searching": false,
+        "ordering": false,
+    });
+
     table2.on('click', 'tbody tr', function() {
         var $row = table2.row(this).nodes().to$();
         var hasClass = $row.hasClass('selected');

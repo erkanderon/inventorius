@@ -1,14 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-
-class Description(models.Model):
-    regex_name = models.CharField(max_length=100)
-    regex = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.description
+from common.models import Description
 
 class Subnet(models.Model):
     subnet_ip = models.GenericIPAddressField()
@@ -29,9 +22,9 @@ class Subnet(models.Model):
 class Ip(models.Model):
 
     ip = models.CharField(max_length=100)
-    subnet = models.ForeignKey(Subnet, on_delete=models.CASCADE)
+    subnet = models.ManyToManyField(Subnet, null=True, blank=True)
     dns = models.CharField(max_length=100, null=True)
-    description = models.ForeignKey(Description, related_name='desc', blank=True, null=True, on_delete=models.PROTECT)
+    description = models.ManyToManyField(Description, blank=True)
     port = models.CharField(max_length=500, null=True)
 
     def __str__(self):

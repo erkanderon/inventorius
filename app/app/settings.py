@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'common',
     'homepage',
-    'subnet'
+    'subnet',
+    'environment',
+    'settings',
+    'watcher',
 ]
 
 MIDDLEWARE = [
@@ -139,5 +144,8 @@ APPEND_SLASH = False
 
 STATIC_URL = "/static/"
 
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
+
 #CSRF_TRUSTED_ORIGINS = ["https://engincetinkaya.com", "https://www.drengincetinkaya.com"]
 
+CELERYD_TASK_SOFT_TIME_LIMIT = 60

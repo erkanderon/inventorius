@@ -5,7 +5,7 @@ from django.contrib import messages
 
 from .forms import SubnetForm
 from .models import NMAPTask, Subnet, Ip
-from .runners import start_nmap_analyze
+from .runner import start_nmap_analyze
 from django.db.models import Count
 
 
@@ -33,7 +33,8 @@ def subnet_page(request):
                 messages.error(request, "There is Already a Running Task.")
                 return HttpResponseRedirect(request.path)
 
-            subnet = Subnet.objects.filter(subnet_ip=clean_form["subnet_ip"]).exists()
+            cidr = "{}/{}".format(clean_form["subnet_ip"], clean_form["mask"])
+            subnet = Subnet.objects.filter(cidr=cidr).exists()
             if not subnet:
                 form.save()
         

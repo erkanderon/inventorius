@@ -1,5 +1,11 @@
-DJANGO_SUPERUSER_USERNAME=admin2 DJANGO_SUPERUSER_PASSWORD=psw \
+DJANGO_SUPERUSER_USERNAME=admin DJANGO_SUPERUSER_PASSWORD=admin \
     python manage.py createsuperuser --email=admin@admin.com --noinput
 
 
     
+
+python manage.py loaddata default_objects
+
+
+
+python manage.py makemigrations environment

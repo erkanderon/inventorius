@@ -37,5 +37,17 @@
 			    </div>
 			</div>
 		{% endif %}
+		{% if message.tags == 'warning' %}
+			<div class="alert alert-warning solid alert-dismissible fade show" style="text-transform: uppercase; position: absolute; top: 0; right: 0; z-index: 10; max-width: 250px;">
+			    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"><span><i class="mdi mdi-btn-close"></i></span>
+			    </button>
+			    <div class="media">
+			        <div class="media-body">
+			            <h5 class="mt-1 mb-2 text-white">{{ message.tags }}</h5>
+			            <p class="mb-0">{{ message }}</p>
+			        </div>
+			    </div>
+			</div>
+		{% endif %}
 	{% endfor %}
 {% endif %}
