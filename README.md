@@ -2,7 +2,7 @@
 # INVENTORIUS
 Inventorius is a internal infrastructure monitoring tool for large distributed environments.
 
-####Have an ability to
+#### Have an ability to
 
 - Scan IPs for subnets
 - Seperate them to different views
