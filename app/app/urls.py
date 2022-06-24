@@ -24,4 +24,5 @@ urlpatterns = [
     re_path(r'^', include('environment.urls')),
     re_path(r'^', include('subnet.urls')),
     re_path(r'^', include('settings.urls')),
+    re_path(r'^', include('watcher.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

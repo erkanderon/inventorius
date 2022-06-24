@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'subnet',
     'environment',
     'settings',
+    'watcher',
 ]
 
 MIDDLEWARE = [
