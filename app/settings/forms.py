@@ -2,7 +2,7 @@
 
 from django import forms
 import re
-from common.models import Description
+from common.models import Description, Config
 
 class RegexValidationForm(forms.Form):
     regex = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-sm', 'placeholder': '^dpdb.*p.*$'}))
@@ -24,3 +24,11 @@ class RemoveDescriptionForm(forms.ModelForm):
     class Meta:
         model = Description
         fields = ["regex_name"]
+
+class UpdateSMTPConfig(forms.ModelForm):
+    smtp_uri = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    smtp_port = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = Config
+        fields = ["smtp_uri", "smtp_port"]

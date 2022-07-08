@@ -1,0 +1,5 @@
+- model: common.Config
+  pk: 1
+  fields:
+    smtp_uri: ""
+    smtp_port: 0

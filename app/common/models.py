@@ -16,3 +16,10 @@ class NetworkConnDescription(models.Model):
 
     def __str__(self):
         return self.description
+
+class Config(models.Model):
+    smtp_uri = models.CharField(max_length=100, default=None)
+    smtp_port = models.IntegerField(default=None)
+
+    def __str__(self):
+        return "configuration"

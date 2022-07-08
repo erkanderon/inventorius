@@ -6,8 +6,8 @@ from django.http import JsonResponse
 
 import re
 
-from common.models import Description
-from .forms import RegexValidationForm, AddRegexForm, RemoveDescriptionForm
+from common.models import Description, Config
+from .forms import RegexValidationForm, AddRegexForm, RemoveDescriptionForm, UpdateSMTPConfig
 
 # Create your views here.
 class settings(View):
@@ -20,9 +20,16 @@ class settings(View):
         regex_form = RegexValidationForm()
         regex_add_form = AddRegexForm()
         regex_remove_form = RemoveDescriptionForm()
+        smtp_update_form = UpdateSMTPConfig()
+        config = Config.objects.get(id=1)
         
 
-        return render(request, self.template_name, {'desc': desc, 'regex_form': regex_form, 'regex_add_form': regex_add_form, 'regex_remove_form': regex_remove_form})
+        return render(request, self.template_name, {'desc': desc, 
+            'regex_form': regex_form, 
+            'regex_add_form': regex_add_form, 
+            'regex_remove_form': regex_remove_form,
+            'smtp_update_form': smtp_update_form,
+            'config': config})
 
 def validate_regex_match(request):
     regex = request.GET.get('regex', None)

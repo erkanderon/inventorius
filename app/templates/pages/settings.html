@@ -9,8 +9,9 @@
          <div class="container-fluid">
             <div class="col-xl-12 col-lg-12 col-sm-12 settings">
                 <div class="row">
-                  <a href="javascript:void(0)">
-                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3" data-bs-toggle="modal" data-bs-target="#configureModal">
+                  
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3" data-bs-toggle="modal" data-bs-target="#regexModal">
+                      <a href="javascript:void(0)">
                       <div class="widget-stat card bg-warning overflow-hidden">
                         <div class="card-header border-0 text-center ">
                           <h3 class="card-title text-white">Regex</h3>
@@ -23,8 +24,27 @@
                           </div>
                         </div>
                       </div>
+                      </a>
                     </div>
-                  </a>
+                  
+                  
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3" data-bs-toggle="modal" data-bs-target="#smtpModal" onclick="openEditBox('{{config.smtp_uri|escapejs}}', '{{config.smtp_port|escapejs}}')">
+                      <a href="javascript:void(0)">
+                      <div class="widget-stat card bg-info overflow-hidden">
+                        <div class="card-header border-0 text-center ">
+                          <h3 class="card-title text-white">SMTP</h3>
+                        </div>
+                        <div class="card-body">
+                          <div class="ico-sparkline">
+                            <div class="bgl-info text-info">
+                              <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                  
                 </div>
               </div>
           </div>
@@ -33,8 +53,49 @@
             Content body end
         ***********************************-->
 
+        <div class="modal fade" id="smtpModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit SMTP Configuration</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="/environment/update">
+                                  {% csrf_token %}
+                                  {% for field in smtp_update_form %}
+                                    <div class="mb-3 row">
+                                      {{ field.errors }}
+                                          {% if field.label != "Id" %}
+                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          {% endif %}
+                                          <div class="col-sm-9">
+                                              {{ field }}
+                                          </div>
+                                      </div>
+                                  {% endfor %}
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <script>
+        function openEditBox(uri, port){
+           $("#smtpModal form input[name='smtp_uri']").val(uri);
+           $("#smtpModal form input[name='smtp_port']").val(port);
+        };
+        </script>
 
-        <div class="modal fade" id="configureModal" style="display: none;" aria-hidden="true">
+
+        <div class="modal fade" id="regexModal" style="display: none;" aria-hidden="true">
             <div class="modal-dialog" role="document" style="max-width: 1100px;">
                 <div class="modal-content">
                     <div class="configure-content">
@@ -239,4 +300,5 @@
                 </div>
             </div>
         </div>
+
 {% endblock %}
