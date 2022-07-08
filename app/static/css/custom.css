@@ -116,5 +116,41 @@ li[data-bs-toggle="modal"]{
 #configureModal table[class="display dataTable"], #configureModal .dataTables_scrollFootInner{
     width: 100% !important;
 }
+#green-round{
+width:25px;
+height:25px;
+border-radius: 50%;
+background-color:#4bca6f;
+position:relative;
+transform:rotate(45deg);
+-webkit-animation:example 0.3s linear 1s infinite alternate ;
+z-index:0;
+}
+#red-round{
+width:25px;
+height:25px;
+border-radius: 50%;
+background-color:red;
+position:relative;
+transform:rotate(45deg);
+-webkit-animation:example 0.3s linear 1s infinite alternate ;
+z-index:0;
+}
+@-webkit-keyframes example{
+0%   { -webkit-transform:scale(1,1) rotate(45deg);box-shadow:0 0 40px rgba(213,9,60,1);}
+    100%  {-webkit-transform:scale(1.1,1.1) rotate(45deg);box-shadow:0 0 40px rgba(213,9,60,.6);}
+  }
 
+.fs-22 {
+    font-size: 10px !important;
+}
+.fa-info-circle{
+  color: #263db1;
+}
+.order-manage {
+    background: #d3e5d8 !important;
+}
+.port{
+  color: #263db1;
+}
     

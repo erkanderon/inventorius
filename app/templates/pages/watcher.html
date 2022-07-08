@@ -1,22 +1,120 @@
 {% extends "commons/base.html" %}
 
 {% block content %}
+<style>
+  
+</style>
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
             <!-- row -->
          <div class="container-fluid">
-            <div class="form-head d-flex mb-3 align-items-start">
-
-               <div class="me-auto d-none d-lg-block">
-                  <h2 class="text-primary font-w600 mb-0">Watcher</h2>
-                  <p class="mb-0">Welcome to Inventorius Admin!</p>
-               </div>
-             </div>
+            <div class="row page-titles">
+              <ol class="action-box">
+                <li class="action-item"><a href="javascript:void(0)"><button type="button" class="btn mb-2" data-bs-toggle="modal" data-bs-target="#removeModal">Remove</button></a></li>
+                <li class="action-item"><a href="javascript:void(0)"><button type="button" class="btn mb-2" data-bs-toggle="modal" data-bs-target="#addModal">Add</button></a></li>
+              </ol>
             </div>
+            <div class="row">
+              {% for watch in watcher %}
+                {% if watch.status == 1 %}
+                <div class="col-xl-4 col-lg-6 col-xxl-4 col-sm-6">
+                  <div class="d-flex flex-wrap order-manage p-3 align-items-center mb-4">
+                    <a href="javascript:void(0);" class="btn fs-22 text-white py-1 btn-success px-4 me-3">{{ watch.dns }}</a>
+                    <span class="port">{{ watch.port }}</span>
+                    <div class="bootstrap-popover d-inline-block">
+                        
+                    </div>
+                    <a href="javascript:void(0);" class="ms-auto text-primary font-w500"><div id="green-round"></div></a>
+                  </div>
+                </div>
+                {% else %}
+                <div class="col-xl-4 col-lg-6 col-xxl-4 col-sm-6">
+                  <div class="d-flex flex-wrap order-manage p-3 align-items-center mb-4">
+                    <a href="javascript:void(0);" class="btn fs-22 text-white py-1 btn-danger px-4 me-3">{{ watch.dns }}</a>
+                    <span class="port">{{ watch.port }}</span>
+                    <div class="bootstrap-popover d-inline-block">
+                        <a href="javascript:void(0);" class="px-4 " data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="{{ watch.error_code.description }}" title="{{ watch.error_code.name }}" data-bs-original-title="Popover in Bottom"><i class="fas fa-info-circle"></i></a>
+                    </div>
+                    <a href="javascript:void(0);" class="ms-auto text-primary font-w500"><div id="red-round"></div></a>
+                  </div>
+                </div>
+                {% endif %} 
+              {% endfor %}
+            </div>
+         </div>
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
+
+        <div class="modal fade" id="addModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Add New Environment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="/watcher/create">
+                                  {% csrf_token %}
+                                  <!--{{ form.as_p }}-->
+                                  {% for field in create_form %}
+                                    <div class="mb-3 row">
+                                      {{ field.errors }}
+                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          <div class="col-sm-9">
+                                              {{ field }}
+                                          </div>
+                                      </div>
+                                  {% endfor %}
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="removeModal" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Remove Environment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form method="POST" action="/watcher/delete">
+                                  {% csrf_token %}
+                                  <!--{{ form.as_p }}-->
+                                  {% for field in remove_form %}
+                                    <div class="mb-3 row">
+                                      {{ field.errors }}
+                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          <div class="col-sm-9">
+                                              {{ field }}
+                                          </div>
+                                      </div>
+                                  {% endfor %}
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="popover fade bs-popover-top" role="tooltip" id="popover587062" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(414px, -253.203px);" data-popper-placement="top"><div class="popover-arrow" style="position: absolute; left: 0px; transform: translate(128px, 0px);"></div><h3 class="popover-header">CUSTOM</h3><div class="popover-body">Custom Error Happened</div></div>
 {% endblock %}

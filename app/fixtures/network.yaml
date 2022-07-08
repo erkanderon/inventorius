@@ -1,0 +1,1045 @@
+- model: common.NetworkConnDescription
+  pk: 131
+  fields:
+    name: APP_PROB
+    code: 1001
+    description: Error cannot resolved.
+
+- model: common.NetworkConnDescription
+  pk: 1
+  fields:
+    name: ENODEV
+    code: 19
+    description: Operation not supported by device
+    
+
+- model: common.NetworkConnDescription
+  pk: 2
+  fields:
+    name: ENOCSI
+    code: 50
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 3
+  fields:
+    name: EHOSTUNREACH
+    code: 113
+    description: No route to host
+    
+
+- model: common.NetworkConnDescription
+  pk: 4
+  fields:
+    name: ENOMSG
+    code: 42
+    description: No message of desired type
+    
+
+- model: common.NetworkConnDescription
+  pk: 5
+  fields:
+    name: EUCLEAN
+    code: 117
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 6
+  fields:
+    name: EL2NSYNC
+    code: 45
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 7
+  fields:
+    name: EL2HLT
+    code: 51
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 8
+  fields:
+    name: ENODATA
+    code: 61
+    description: No message available on STREAM
+    
+
+- model: common.NetworkConnDescription
+  pk: 9
+  fields:
+    name: ENOTBLK
+    code: 15
+    description: Block device required
+    
+
+- model: common.NetworkConnDescription
+  pk: 10
+  fields:
+    name: ENOSYS
+    code: 38
+    description: Function not implemented
+    
+
+- model: common.NetworkConnDescription
+  pk: 11
+  fields:
+    name: EPIPE
+    code: 32
+    description: Broken pipe
+    
+
+- model: common.NetworkConnDescription
+  pk: 12
+  fields:
+    name: EINVAL
+    code: 22
+    description: Invalid argument
+    
+
+- model: common.NetworkConnDescription
+  pk: 13
+  fields:
+    name: EOVERFLOW
+    code: 75
+    description: Value too large to be stored in data type
+    
+
+- model: common.NetworkConnDescription
+  pk: 14
+  fields:
+    name: EADV
+    code: 68
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 15
+  fields:
+    name: EINTR
+    code: 4
+    description: Interrupted system call
+    
+
+- model: common.NetworkConnDescription
+  pk: 16
+  fields:
+    name: EUSERS
+    code: 87
+    description: Too many users
+    
+
+- model: common.NetworkConnDescription
+  pk: 17
+  fields:
+    name: ENOTEMPTY
+    code: 39
+    description: Directory not empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 18
+  fields:
+    name: ENOBUFS
+    code: 105
+    description: No buffer space available
+    
+
+- model: common.NetworkConnDescription
+  pk: 19
+  fields:
+    name: EPROTO
+    code: 71
+    description: Protocol error
+    
+
+- model: common.NetworkConnDescription
+  pk: 20
+  fields:
+    name: EREMOTE
+    code: 66
+    description: Too many levels of remote in path
+    
+
+- model: common.NetworkConnDescription
+  pk: 21
+  fields:
+    name: ENAVAIL
+    code: 119
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 22
+  fields:
+    name: ECHILD
+    code: 10
+    description: No child processes
+    
+
+- model: common.NetworkConnDescription
+  pk: 23
+  fields:
+    name: ELOOP
+    code: 40
+    description: Too many levels of symbolic links
+    
+
+- model: common.NetworkConnDescription
+  pk: 24
+  fields:
+    name: EXDEV
+    code: 18
+    description: Cross-device link
+    
+
+- model: common.NetworkConnDescription
+  pk: 25
+  fields:
+    name: E2BIG
+    code: 7
+    description: Argument list too long
+    
+
+- model: common.NetworkConnDescription
+  pk: 26
+  fields:
+    name: ESRCH
+    code: 3
+    description: No such process
+    
+
+- model: common.NetworkConnDescription
+  pk: 27
+  fields:
+    name: EMSGSIZE
+    code: 90
+    description: Message too long
+    
+
+- model: common.NetworkConnDescription
+  pk: 28
+  fields:
+    name: EAFNOSUPPORT
+    code: 97
+    description: Address family not supported by protocol family
+    
+
+- model: common.NetworkConnDescription
+  pk: 29
+  fields:
+    name: EBADR
+    code: 53
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 30
+  fields:
+    name: EHOSTDOWN
+    code: 112
+    description: Host is down
+    
+
+- model: common.NetworkConnDescription
+  pk: 31
+  fields:
+    name: EPFNOSUPPORT
+    code: 96
+    description: Protocol family not supported
+    
+
+- model: common.NetworkConnDescription
+  pk: 32
+  fields:
+    name: ENOPROTOOPT
+    code: 92
+    description: Protocol not available
+    
+
+- model: common.NetworkConnDescription
+  pk: 33
+  fields:
+    name: EBUSY
+    code: 16
+    description: Device / Resource busy
+    
+
+- model: common.NetworkConnDescription
+  pk: 34
+  fields:
+    name: EAGAIN
+    code: 11
+    description: Resource temporarily unavailable
+    
+
+- model: common.NetworkConnDescription
+  pk: 35
+  fields:
+    name: EBADFD
+    code: 77
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 36
+  fields:
+    name: EDOTDOT
+    code: 73
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 37
+  fields:
+    name: EISCONN
+    code: 106
+    description: Socket is already connected
+    
+
+- model: common.NetworkConnDescription
+  pk: 38
+  fields:
+    name: ENOANO
+    code: 55
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 39
+  fields:
+    name: ESHUTDOWN
+    code: 108
+    description: Can't send after socket shutdown
+    
+
+- model: common.NetworkConnDescription
+  pk: 40
+  fields:
+    name: ECHRNG
+    code: 44
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 41
+  fields:
+    name: ELIBBAD
+    code: 80
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 42
+  fields:
+    name: ENONET
+    code: 64
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 43
+  fields:
+    name: EBADE
+    code: 52
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 44
+  fields:
+    name: EBADF
+    code: 9
+    description: Bad file descriptor
+    
+
+- model: common.NetworkConnDescription
+  pk: 45
+  fields:
+    name: EMULTIHOP
+    code: 72
+    description: Reserved
+    
+
+- model: common.NetworkConnDescription
+  pk: 46
+  fields:
+    name: EIO
+    code: 5
+    description: Input/output error
+    
+
+- model: common.NetworkConnDescription
+  pk: 47
+  fields:
+    name: EUNATCH
+    code: 49
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 48
+  fields:
+    name: EPROTOTYPE
+    code: 91
+    description: Protocol wrong type for socket
+    
+
+- model: common.NetworkConnDescription
+  pk: 49
+  fields:
+    name: ENOSPC
+    code: 28
+    description: No space left on device
+    
+
+- model: common.NetworkConnDescription
+  pk: 50
+  fields:
+    name: ENOEXEC
+    code: 8
+    description: Exec format error
+    
+
+- model: common.NetworkConnDescription
+  pk: 51
+  fields:
+    name: EALREADY
+    code: 114
+    description: Operation already in progress
+    
+
+- model: common.NetworkConnDescription
+  pk: 52
+  fields:
+    name: ENETDOWN
+    code: 100
+    description: Network is down
+    
+
+- model: common.NetworkConnDescription
+  pk: 53
+  fields:
+    name: ENOTNAM
+    code: 118
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 54
+  fields:
+    name: EACCES
+    code: 13
+    description: Permission denied
+    
+
+- model: common.NetworkConnDescription
+  pk: 55
+  fields:
+    name: ELNRNG
+    code: 48
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 56
+  fields:
+    name: EILSEQ
+    code: 84
+    description: Illegal byte sequence
+    
+
+- model: common.NetworkConnDescription
+  pk: 57
+  fields:
+    name: ENOTDIR
+    code: 20
+    description: Not a directory
+    
+
+- model: common.NetworkConnDescription
+  pk: 58
+  fields:
+    name: ENOTUNIQ
+    code: 76
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 59
+  fields:
+    name: EPERM
+    code: 1
+    description: Operation not permitted
+    
+
+- model: common.NetworkConnDescription
+  pk: 60
+  fields:
+    name: EDOM
+    code: 33
+    description: Numerical argument out of domain
+    
+
+- model: common.NetworkConnDescription
+  pk: 61
+  fields:
+    name: EXFULL
+    code: 54
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 62
+  fields:
+    name: ECONNREFUSED
+    code: 111
+    description: Connection refused
+    
+
+- model: common.NetworkConnDescription
+  pk: 63
+  fields:
+    name: EISDIR
+    code: 21
+    description: Is a directory
+    
+
+- model: common.NetworkConnDescription
+  pk: 64
+  fields:
+    name: EPROTONOSUPPORT
+    code: 93
+    description: Protocol not supported
+    
+
+- model: common.NetworkConnDescription
+  pk: 65
+  fields:
+    name: EROFS
+    code: 30
+    description: Read-only file system
+    
+
+- model: common.NetworkConnDescription
+  pk: 66
+  fields:
+    name: EADDRNOTAVAIL
+    code: 99
+    description: Can't assign requested address
+    
+
+- model: common.NetworkConnDescription
+  pk: 67
+  fields:
+    name: EIDRM
+    code: 43
+    description: Identifier removed
+    
+
+- model: common.NetworkConnDescription
+  pk: 68
+  fields:
+    name: ECOMM
+    code: 70
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 69
+  fields:
+    name: ESRMNT
+    code: 69
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 70
+  fields:
+    name: EREMOTEIO
+    code: 121
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 71
+  fields:
+    name: EL3RST
+    code: 47
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 72
+  fields:
+    name: EBADMSG
+    code: 74
+    description: Bad message
+    
+
+- model: common.NetworkConnDescription
+  pk: 73
+  fields:
+    name: ENFILE
+    code: 23
+    description: Too many open files in system
+    
+
+- model: common.NetworkConnDescription
+  pk: 74
+  fields:
+    name: ELIBMAX
+    code: 82
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 75
+  fields:
+    name: ESPIPE
+    code: 29
+    description: Illegal seek
+    
+
+- model: common.NetworkConnDescription
+  pk: 76
+  fields:
+    name: ENOLINK
+    code: 67
+    description: Reserved
+    
+
+- model: common.NetworkConnDescription
+  pk: 77
+  fields:
+    name: ENETRESET
+    code: 102
+    description: Network dropped connection on reset
+    
+
+- model: common.NetworkConnDescription
+  pk: 78
+  fields:
+    name: ETIMEDOUT
+    code: 110
+    description: Operation timed out
+    
+
+- model: common.NetworkConnDescription
+  pk: 79
+  fields:
+    name: ENOENT
+    code: 2
+    description: No such file or directory
+    
+
+- model: common.NetworkConnDescription
+  pk: 80
+  fields:
+    name: EEXIST
+    code: 17
+    description: File exists
+    
+
+- model: common.NetworkConnDescription
+  pk: 81
+  fields:
+    name: EDQUOT
+    code: 122
+    description: Disc quota exceeded
+    
+
+- model: common.NetworkConnDescription
+  pk: 82
+  fields:
+    name: ENOSTR
+    code: 60
+    description: Not a STREAM
+    
+
+- model: common.NetworkConnDescription
+  pk: 83
+  fields:
+    name: EBADSLT
+    code: 57
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 84
+  fields:
+    name: EBADRQC
+    code: 56
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 85
+  fields:
+    name: ELIBACC
+    code: 79
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 86
+  fields:
+    name: EFAULT
+    code: 14
+    description: Bad address
+    
+
+- model: common.NetworkConnDescription
+  pk: 87
+  fields:
+    name: EFBIG
+    code: 27
+    description: File too large
+    
+
+- model: common.NetworkConnDescription
+  pk: 88
+  fields:
+    name: EDEADLOCK
+    code: 35
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 89
+  fields:
+    name: ENOTCONN
+    code: 107
+    description: Socket is not connected
+    
+
+- model: common.NetworkConnDescription
+  pk: 90
+  fields:
+    name: EDESTADDRREQ
+    code: 89
+    description: Destination address required
+    
+
+- model: common.NetworkConnDescription
+  pk: 91
+  fields:
+    name: ELIBSCN
+    code: 81
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 92
+  fields:
+    name: ENOLCK
+    code: 37
+    description: No locks available
+    
+
+- model: common.NetworkConnDescription
+  pk: 93
+  fields:
+    name: EISNAM
+    code: 120
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 94
+  fields:
+    name: ECONNABORTED
+    code: 103
+    description: Software caused connection abort
+    
+
+- model: common.NetworkConnDescription
+  pk: 95
+  fields:
+    name: ENETUNREACH
+    code: 101
+    description: Network is unreachable
+    
+
+- model: common.NetworkConnDescription
+  pk: 96
+  fields:
+    name: ESTALE
+    code: 116
+    description: Stale NFS file handle
+    
+
+- model: common.NetworkConnDescription
+  pk: 97
+  fields:
+    name: ENOSR
+    code: 63
+    description: No STREAM resources
+    
+
+- model: common.NetworkConnDescription
+  pk: 98
+  fields:
+    name: ENOMEM
+    code: 12
+    description: Cannot allocate memory
+    
+
+- model: common.NetworkConnDescription
+  pk: 99
+  fields:
+    name: ENOTSOCK
+    code: 88
+    description: Socket operation on non-socket
+    
+
+- model: common.NetworkConnDescription
+  pk: 100
+  fields:
+    name: ESTRPIPE
+    code: 86
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 101
+  fields:
+    name: EMLINK
+    code: 31
+    description: Too many links
+    
+
+- model: common.NetworkConnDescription
+  pk: 102
+  fields:
+    name: ERANGE
+    code: 34
+    description: Result too large
+    
+
+- model: common.NetworkConnDescription
+  pk: 103
+  fields:
+    name: ELIBEXEC
+    code: 83
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 104
+  fields:
+    name: EL3HLT
+    code: 46
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 105
+  fields:
+    name: ECONNRESET
+    code: 104
+    description: Connection reset by peer
+    
+
+- model: common.NetworkConnDescription
+  pk: 106
+  fields:
+    name: EADDRINUSE
+    code: 98
+    description: Address already in use
+    
+
+- model: common.NetworkConnDescription
+  pk: 107
+  fields:
+    name: ENOTSUP
+    code: 95
+    description: Operation not supported
+    
+
+- model: common.NetworkConnDescription
+  pk: 108
+  fields:
+    name: EREMCHG
+    code: 78
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 109
+  fields:
+    name: ENAMETOOLONG
+    code: 36
+    description: File name too long
+    
+
+- model: common.NetworkConnDescription
+  pk: 110
+  fields:
+    name: ENOTTY
+    code: 25
+    description: Inappropriate ioctl for device
+    
+
+- model: common.NetworkConnDescription
+  pk: 111
+  fields:
+    name: ERESTART
+    code: 85
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 112
+  fields:
+    name: ESOCKTNOSUPPORT
+    code: 94
+    description: Socket type not supported
+    
+
+- model: common.NetworkConnDescription
+  pk: 113
+  fields:
+    name: ETIME
+    code: 62
+    description: STREAM ioctl timeout
+    
+
+- model: common.NetworkConnDescription
+  pk: 114
+  fields:
+    name: EBFONT
+    code: 59
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 115
+  fields:
+    name: ETOOMANYREFS
+    code: 109
+    description: Too many references can't splice
+    
+
+- model: common.NetworkConnDescription
+  pk: 116
+  fields:
+    name: EMFILE
+    code: 24
+    description: Too many open files
+    
+
+- model: common.NetworkConnDescription
+  pk: 117
+  fields:
+    name: ETXTBSY
+    code: 26
+    description: Text file busy
+    
+
+- model: common.NetworkConnDescription
+  pk: 118
+  fields:
+    name: EINPROGRESS
+    code: 115
+    description: Operation now in progress
+    
+
+- model: common.NetworkConnDescription
+  pk: 119
+  fields:
+    name: ENXIO
+    code: 6
+    description: Device not configured
+    
+
+- model: common.NetworkConnDescription
+  pk: 120
+  fields:
+    name: ENOPKG
+    code: 65
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 121
+  fields:
+    name: ENOMEDIUM
+    code: 123
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 122
+  fields:
+    name: EMEDIUMTYPE
+    code: 124
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 123
+  fields:
+    name: ECANCELED
+    code: 125
+    description: Operation canceled
+    
+
+- model: common.NetworkConnDescription
+  pk: 124
+  fields:
+    name: ENOKEY
+    code: 126
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 125
+  fields:
+    name: EKEYEXPIRED
+    code: 127
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 126
+  fields:
+    name: EKEYREVOKED
+    code: 128
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 127
+  fields:
+    name: EKEYREJECTED
+    code: 129
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 128
+  fields:
+    name: EOWNERDEAD
+    code: 130
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 129
+  fields:
+    name: ENOTRECOVERABLE
+    code: 131
+    description: empty
+    
+
+- model: common.NetworkConnDescription
+  pk: 130
+  fields:
+    name: ERFKILL
+    code: 132
+    description: empty

@@ -1,12 +1,12 @@
 - model: common.description
-  pk: 50
+  pk: 1
   fields:
-    regex_name: default
-    regex: default
-    description: Default value for Inventorius app
+    regex_name: all
+    regex: ^.*.*$
+    description: All machines
 - model: common.description
-  pk: 51
+  pk: 2
   fields:
     regex_name: db_seperator
-    regex: ^dpdb.*p.*$
+    regex: ^dpdb.*.*$
     description: DB Machines seperated by hostname
