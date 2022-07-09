@@ -72,11 +72,31 @@ class delete_description(View):
             clean_form = form.cleaned_data
 
             try:
-                description = Description.objects.get(description=clean_form["regex_name"])
-                description.delete()
+                clean_form.delete()
             except Exception as e:
                 messages.error(request, e)
                 return HttpResponseRedirect(self.success_url)
 
             messages.success(request, "Regex removed successfully!")
+        return HttpResponseRedirect(self.success_url)
+
+class update_smtp_config(View):
+    success_url = "/settings"
+
+    def post(self, request):
+        form = UpdateSMTPConfig(request.POST)
+
+        if form.is_valid():
+            clean_form = form.cleaned_data
+
+            try:
+                config = Config.objects.get(id=1)
+                config.smtp_uri = clean_form["smtp_uri"]
+                config.smtp_port = clean_form["smtp_port"]
+                config.save()
+            except Exception as e:
+                messages.error(request, e)
+                return HttpResponseRedirect(self.success_url)
+
+            messages.success(request, "SMTP updated successfully!")
         return HttpResponseRedirect(self.success_url)

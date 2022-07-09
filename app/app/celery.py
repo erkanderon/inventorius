@@ -37,4 +37,8 @@ app.conf.beat_schedule = {
         'task': 'sync_environment_count',
         'schedule': crontab(minute="*/30"),
     },
+    'check_watcher_status_scheduled_task': {
+        'task': 'check_watcher_status',
+        'schedule': crontab(minute="*/1"),
+    },
 }

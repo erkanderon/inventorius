@@ -62,7 +62,7 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
-                                <form method="POST" action="/environment/update">
+                                <form method="POST" action="/settings/smtp/update">
                                   {% csrf_token %}
                                   {% for field in smtp_update_form %}
                                     <div class="mb-3 row">

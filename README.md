@@ -45,12 +45,12 @@ Inventorius is a internal infrastructure monitoring tool for large distributed e
 - [x] environments page details
 - [x] ip - subnet manytomany relationship
 - [x] Regex form add or remove
-- [ ] Simple machine app status check with celery
+- [x] Simple machine app status check with celery
 
 ### TODO LIST v3.0.0
 
 - [x] v2.0.0 review
-- [ ] monitoring spesific host and port
+- [x] monitoring spesific host and port
 - [ ] alarm graphical representation
 - [ ] alarm when you took thresholded failure
 

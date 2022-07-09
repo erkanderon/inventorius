@@ -1,9 +1,3 @@
-- model: common.NetworkConnDescription
-  pk: 131
-  fields:
-    name: APP_PROB
-    code: 1001
-    description: Error cannot resolved.
 
 - model: common.NetworkConnDescription
   pk: 1
@@ -1043,3 +1037,24 @@
     name: ERFKILL
     code: 132
     description: empty
+
+- model: common.NetworkConnDescription
+  pk: 131
+  fields:
+    name: APP_PROB
+    code: 1001
+    description: Error cannot resolved.
+
+- model: common.NetworkConnDescription
+  pk: 132
+  fields:
+    name: ECONNREFUSED
+    code: 10061
+    description: Connection refused
+
+- model: common.NetworkConnDescription
+  pk: 133
+  fields:
+    name: ECONNECTED
+    code: 0
+    description: Connected Successfully

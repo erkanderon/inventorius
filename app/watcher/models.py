@@ -10,9 +10,9 @@ STATUS = (
 
 class Watcher(models.Model):
     dns = models.CharField(max_length=100)
-    port = models.CharField(max_length=100)
+    port = models.IntegerField(default=None)
     status = models.IntegerField(choices=STATUS, default=0)
     error_code = models.ForeignKey(NetworkConnDescription, blank=True, null=True, related_name='error_code', on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.dns + ":" + self.port
+        return self.dns + ":" + str(self.port)

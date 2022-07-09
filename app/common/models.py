@@ -11,11 +11,11 @@ class Description(models.Model):
 
 class NetworkConnDescription(models.Model):
     name = models.CharField(max_length=100)
-    code = models.CharField(max_length=100)
+    code = models.IntegerField(default=None)
     description = models.TextField(blank=True)
 
     def __str__(self):
-        return self.description
+        return str(self.code)
 
 class Config(models.Model):
     smtp_uri = models.CharField(max_length=100, default=None)

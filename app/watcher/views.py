@@ -39,11 +39,15 @@ class create(View):
             is_watcher_exist = Watcher.objects.filter(dns=dns, port=port).exists()
             if not is_watcher_exist:
                 response_code, status = check_machine_connection(dns, port)
+                print(response_code, status)
                 watcher = Watcher()
                 watcher.dns = dns
                 watcher.port = port
                 watcher.status = status
-                watcher.error_code = NetworkConnDescription.objects.get(code=response_code).NetworkConnDescription_set.all()
+                try:
+                    watcher.error_code = NetworkConnDescription.objects.get(code=response_code)
+                except Exception as e:
+                    watcher.error_code = NetworkConnDescription.objects.get(code=1001)
                 watcher.save()
                 messages.success(request, "Watcher created successfully!")
                 return HttpResponseRedirect(self.success_url)

@@ -72,48 +72,48 @@ li[data-bs-toggle="modal"]{
     color: #464a53;
     min-width: 5.3125rem;
 }
-#configureModal .configure-content{
+#regexModal .configure-content{
     display: flex;
     flex-direction: row;
 }
-#configureModal .configure-content .left-part{
+#regexModal .configure-content .left-part{
     width: 50%;
     height: 80vh;
     text-align: right;
     color: white;
 }
-#configureModal .configure-content .right-part{
+#regexModal .configure-content .right-part{
     width: 50%;
     height: 80vh;
 }
-#configureModal form{
+#regexModal form{
     margin-top: 10px;
 }
-#configureModal form label{
+#regexModal form label{
     color: black;
     text-align: left;
     margin-top: 5px;
 }
-#configureModal .basic-form .modal-footer button{
+#regexModal .basic-form .modal-footer button{
     width: 100%;
 }
-#configureModal .left-parent {
+#regexModal .left-parent {
     display: flex;
     flex-direction: column;
 }
-#configureModal .modal-content, #configureModal .modal-dialog{
+#regexModal .modal-content, #regexModal .modal-dialog{
     height:100%;
     overflow-x: auto;
 }
-#configureModal table thead th{
+#regexModal table thead th{
     font-size: 10px !important;
     font-weight: 600;
 }
 
-#configureModal .dataTables_scrollHeadInner{
+#regexModal .dataTables_scrollHeadInner{
     width: 100% !important;
 }
-#configureModal table[class="display dataTable"], #configureModal .dataTables_scrollFootInner{
+#regexModal table[class="display dataTable"], #regexModal .dataTables_scrollFootInner{
     width: 100% !important;
 }
 #green-round{
@@ -152,5 +152,11 @@ z-index:0;
 }
 .port{
   color: #263db1;
+}
+.popover-header {
+    background: #263db1;
+}
+.popover {
+    border: 0.125rem solid #263db1;
 }
     
