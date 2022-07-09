@@ -28,7 +28,11 @@ class RemoveDescriptionForm(forms.ModelForm):
 class UpdateSMTPConfig(forms.ModelForm):
     smtp_uri = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     smtp_port = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control'}))
+    smtp_sender = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    smtp_receiver = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    smtp_subject = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    smtp_enabled = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'switch-input'}), required=False)
 
     class Meta:
         model = Config
-        fields = ["smtp_uri", "smtp_port"]
+        fields = ["smtp_uri", "smtp_port", "smtp_sender", "smtp_receiver", "smtp_subject", "smtp_enabled"]

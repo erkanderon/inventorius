@@ -41,4 +41,9 @@ app.conf.beat_schedule = {
         'task': 'check_watcher_status',
         'schedule': crontab(minute="*/1"),
     },
+    'machine_status_alarm_scheduled_task': {
+        'task': 'machine_status_alarm',
+        'schedule': crontab(minute="*/5"),
+    },
+    
 }

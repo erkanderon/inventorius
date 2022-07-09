@@ -5,7 +5,7 @@ from subnet.models import Ip
 from .models import Description
 from environment.models import Environment
 
-from .runner import sync_environment_count, sync_ip_description, check_watcher_status
+from .runner import sync_environment_count, sync_ip_description, check_watcher_status, send_machine_status_alarm
 
 from .models import Description, NetworkConnDescription
 from environment.models import Environment
@@ -42,4 +42,14 @@ def check_watcher_status_task(*args):
     except Exception as e:
         logger.info("Watcher Status analyz finished failed")
         logger.info(e)
+
+@shared_task(name='machine_status_alarm', bind=True)
+def machine_status_alarm_task(*args):
+    try:
+        send_machine_status_alarm()
+        logger.info("Machine Status Alarm Task finished success")
+    except Exception as e:
+        logger.info("Machine Status Alarm Task finished failed")
+        logger.info(e)
+
 

@@ -93,6 +93,10 @@ class update_smtp_config(View):
                 config = Config.objects.get(id=1)
                 config.smtp_uri = clean_form["smtp_uri"]
                 config.smtp_port = clean_form["smtp_port"]
+                config.smtp_sender = clean_form["smtp_sender"]
+                config.smtp_receiver = clean_form["smtp_receiver"]
+                config.smtp_subject = clean_form["smtp_subject"]
+                config.smtp_enabled = clean_form["smtp_enabled"]
                 config.save()
             except Exception as e:
                 messages.error(request, e)

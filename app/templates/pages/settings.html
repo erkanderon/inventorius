@@ -1,6 +1,7 @@
 {% extends "commons/base.html" %}
 
 {% block content %}
+
 	      <!--**********************************
             Content body start
         ***********************************-->
@@ -28,7 +29,7 @@
                     </div>
                   
                   
-                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3" data-bs-toggle="modal" data-bs-target="#smtpModal" onclick="openEditBox('{{config.smtp_uri|escapejs}}', '{{config.smtp_port|escapejs}}')">
+                    <div class="col-xl-3 col-xxl-3 col-lg-3 col-sm-3" data-bs-toggle="modal" data-bs-target="#smtpModal" onclick="openEditBox('{{config.smtp_uri|escapejs}}', '{{config.smtp_port|escapejs}}', '{{config.smtp_sender|escapejs}}', '{{config.smtp_receiver|escapejs}}', '{{config.smtp_subject|escapejs}}', '{{config.smtp_enabled|escapejs}}')">
                       <a href="javascript:void(0)">
                       <div class="widget-stat card bg-info overflow-hidden">
                         <div class="card-header border-0 text-center ">
@@ -62,18 +63,36 @@
                         </div>
                         <div class="card-body">
                             <div class="basic-form">
+                              {% for field in smtp_update_form %}
+                                {{ field.type }}
+                              {% endfor %}
+
                                 <form method="POST" action="/settings/smtp/update">
                                   {% csrf_token %}
                                   {% for field in smtp_update_form %}
                                     <div class="mb-3 row">
                                       {{ field.errors }}
-                                          {% if field.label != "Id" %}
-                                          <label class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                                          {% if field.label == "Id" or field.widget_type == "checkbox" %}
+                                          {% else %}
+                                          <label class="col-sm-4 col-form-label">{{ field.label_tag }}</label>
                                           {% endif %}
-                                          <div class="col-sm-9">
+                                          
+                                          {% if field.widget_type == "checkbox" %}
+                                          <div class="col-sm-12">
+                                            <label class="switch">
                                               {{ field }}
+                                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                                              <span class="switch-handle"></span>
+                                            </label>
                                           </div>
+                                          {% else %}
+                                            <div class="col-sm-8">
+                                              {{ field }}
+                                            </div>
+                                          {% endif %}
+                                          
                                       </div>
+                                      
                                   {% endfor %}
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -88,9 +107,28 @@
             </div>
         </div>
         <script>
-        function openEditBox(uri, port){
-           $("#smtpModal form input[name='smtp_uri']").val(uri);
-           $("#smtpModal form input[name='smtp_port']").val(port);
+        function clean(param){
+          if(param=="None"){
+            return ""
+          }
+          return param
+        }
+        function openEditBox(uri, port, sender, receiver, subject, enabled){
+          uri = clean(uri)
+          port = clean(port)
+          sender = clean(sender)
+          receiver = clean(receiver)
+          subject = clean(subject)
+
+          $("#smtpModal form input[name='smtp_uri']").val(uri);
+          $("#smtpModal form input[name='smtp_port']").val(port);
+          $("#smtpModal form input[name='smtp_sender']").val(sender);
+          $("#smtpModal form input[name='smtp_receiver']").val(receiver);
+          $("#smtpModal form input[name='smtp_subject']").val(subject);
+
+          if(enabled == "True"){
+            $("#smtpModal form input[name='smtp_enabled']").prop('checked', true);
+          }
         };
         </script>
 
